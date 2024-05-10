@@ -1,0 +1,173 @@
+{
+    "type": "VerticalLayout",
+    "elements": [
+        {
+            "type": "HorizontalLayout",
+            "elements": [
+                {
+                    "type": "Group",
+                    "label": "Product Identity",
+                    "elements": [
+                      {"type": "Control", "scope": "#/properties/item_name"},
+                      {"type": "Control", "scope": "#/properties/brand"},
+                      {"type": "Control", "scope": "#/properties/externally_assigned_product_identifier"},
+                      {"type": "Control", "scope": "#/properties/merchant_suggested_asin"},
+                      {"type": "Control", "scope": "#/properties/supplier_declared_has_product_identifier_exemption"},
+                      {"type": "Control", "scope": "#/properties/recommended_browse_nodes"},
+                      {"type": "Control", "scope": "#/properties/package_level"},
+                      {"type": "Control", "scope": "#/properties/package_contains_sku"},
+                      {"type": "Control", "scope": "#/properties/target_audience_keyword"},
+                      {"type": "Control", "scope": "#/properties/model_number"},
+                      {"type": "Control", "scope": "#/properties/manufacturer"}
+                    ]
+                },
+                {
+                    "type": "Group",
+                    "label": "Offer",
+                    "elements": [
+                      {"type": "Control", "scope": "#/properties/skip_offer"},
+                      {"type": "Control", "scope": "#/properties/fulfillment_availability"},
+                      {"type": "Control", "scope": "#/properties/map_policy"},
+                      {"type": "Control", "scope": "#/properties/purchasable_offer"},
+                      {"type": "Control", "scope": "#/properties/condition_type"},
+                      {"type": "Control", "scope": "#/properties/condition_note"},
+                      {"type": "Control", "scope": "#/properties/list_price"},
+                      {"type": "Control", "scope": "#/properties/product_tax_code"},
+                      {"type": "Control", "scope": "#/properties/merchant_release_date"},
+                      {"type": "Control", "scope": "#/properties/merchant_shipping_group"},
+                      {"type": "Control", "scope": "#/properties/max_order_quantity"},
+                      {"type": "Control", "scope": "#/properties/gift_options"},
+                      {"type": "Control", "scope": "#/properties/main_offer_image_locator"},
+                      {"type": "Control", "scope": "#/properties/other_offer_image_locator_1"},
+                      {"type": "Control", "scope": "#/properties/other_offer_image_locator_2"},
+                      {"type": "Control", "scope": "#/properties/other_offer_image_locator_3"},
+                      {"type": "Control", "scope": "#/properties/other_offer_image_locator_4"},
+                      {"type": "Control", "scope": "#/properties/other_offer_image_locator_5"}
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "HorizontalLayout",
+            "elements": [
+                {
+                    "type": "Group",
+                    "label": "Product Details",
+                    "elements": [
+                      {"type": "Control", "scope": "#/properties/handmade_classification"},
+                      {"type": "Control", "scope": "#/properties/product_description"},
+                      {"type": "Control", "scope": "#/properties/bullet_point"},
+                      {"type": "Control", "scope": "#/properties/generic_keyword"},
+                      {"type": "Control", "scope": "#/properties/lifestyle"},
+                      {"type": "Control", "scope": "#/properties/style"},
+                      {"type": "Control", "scope": "#/properties/target_gender"},
+                      {"type": "Control", "scope": "#/properties/material"},
+                      {"type": "Control", "scope": "#/properties/number_of_items"},
+                      {"type": "Control", "scope": "#/properties/item_package_quantity"},
+                      {"type": "Control", "scope": "#/properties/color"},
+                      {"type": "Control", "scope": "#/properties/size"},
+                      {"type": "Control", "scope": "#/properties/part_number"},
+                      {"type": "Control", "scope": "#/properties/configuration"},
+                      {"type": "Control", "scope": "#/properties/skin_tone"},
+                      {"type": "Control", "scope": "#/properties/language"},
+                      {"type": "Control", "scope": "#/properties/product_benefit"},
+                      {"type": "Control", "scope": "#/properties/special_ingredients"},
+                      {"type": "Control", "scope": "#/properties/is_heat_sensitive"},
+                      {"type": "Control", "scope": "#/properties/melting_temperature"},
+                      {"type": "Control", "scope": "#/properties/material_feature"},
+                      {"type": "Control", "scope": "#/properties/material_type_free"},
+                      {"type": "Control", "scope": "#/properties/active_ingredients"},
+                      {"type": "Control", "scope": "#/properties/flavor"},
+                      {"type": "Control", "scope": "#/properties/ingredients"},
+                      {"type": "Control", "scope": "#/properties/short_product_description"},
+                      {"type": "Control", "scope": "#/properties/customer_package_type"},
+                      {"type": "Control", "scope": "#/properties/pattern"},
+                      {"type": "Control", "scope": "#/properties/is_expiration_dated_product"},
+                      {"type": "Control", "scope": "#/properties/product_expiration_type"},
+                      {"type": "Control", "scope": "#/properties/fc_shelf_life"},
+                      {"type": "Control", "scope": "#/properties/item_form"},
+                      {"type": "Control", "scope": "#/properties/unit_count"},
+                      {"type": "Control", "scope": "#/properties/product_site_launch_date"},
+                      {"type": "Control", "scope": "#/properties/specific_uses_for_product"},
+                      {"type": "Control", "scope": "#/properties/league_name"},
+                      {"type": "Control", "scope": "#/properties/team_name"},
+                      {"type": "Control", "scope": "#/properties/recommended_uses_for_product"},
+                      {"type": "Control", "scope": "#/properties/scent"},
+                      {"type": "Control", "scope": "#/properties/skin_type"},
+                      {"type": "Control", "scope": "#/properties/sun_protection"},
+                      {"type": "Control", "scope": "#/properties/target_use_body_part"}
+                    ]
+                  },
+                  {
+                    "type": "Group",
+                    "label": "Shipping",
+                    "elements": [
+                      {"type": "Control", "scope": "#/properties/item_dimensions"},
+                      {"type": "Control", "scope": "#/properties/item_package_dimensions"},
+                      {"type": "Control", "scope": "#/properties/item_package_weight"},
+                      {"type": "Control", "scope": "#/properties/item_volume"},
+                      {"type": "Control", "scope": "#/properties/master_pack_layers_per_pallet_quantity"},
+                      {"type": "Control", "scope": "#/properties/master_packs_per_layer_quantity"}
+                    ]
+                  }
+            ]
+        },
+        {
+            "type": "HorizontalLayout",
+            "elements": [
+                {
+                    "type": "Group",
+                    "label": "Images",
+                    "elements": [
+                      {"type": "Control", "scope": "#/properties/main_product_image_locator"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_1"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_2"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_3"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_4"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_5"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_6"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_7"},
+                      {"type": "Control", "scope": "#/properties/other_product_image_locator_8"},
+                      {"type": "Control", "scope": "#/properties/swatch_product_image_locator"}
+                    ]
+                },
+                {
+                    "type": "Group",
+                    "label": "Variations",
+                    "elements": [
+                      {"type": "Control", "scope": "#/properties/parentage_level"},
+                      {"type": "Control", "scope": "#/properties/child_parent_sku_relationship"},
+                      {"type": "Control", "scope": "#/properties/variation_theme"}
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Group",
+            "label": "Safety & Compliance",
+            "elements": [
+            {"type": "Control", "scope": "#/properties/safety_warning"},
+            {"type": "Control", "scope": "#/properties/country_of_origin"},
+            {"type": "Control", "scope": "#/properties/batteries_required"},
+            {"type": "Control", "scope": "#/properties/batteries_included"},
+            {"type": "Control", "scope": "#/properties/battery"},
+            {"type": "Control", "scope": "#/properties/num_batteries"},
+            {"type": "Control", "scope": "#/properties/number_of_lithium_metal_cells"},
+            {"type": "Control", "scope": "#/properties/number_of_lithium_ion_cells"},
+            {"type": "Control", "scope": "#/properties/lithium_battery"},
+            {"type": "Control", "scope": "#/properties/supplier_declared_dg_hz_regulation"},
+            {"type": "Control", "scope": "#/properties/ghs"},
+            {"type": "Control", "scope": "#/properties/contains_liquid_contents"},
+            {"type": "Control", "scope": "#/properties/liquid_volume"},
+            {"type": "Control", "scope": "#/properties/hazmat"},
+            {"type": "Control", "scope": "#/properties/safety_data_sheet_url"},
+            {"type": "Control", "scope": "#/properties/item_weight"},
+            {"type": "Control", "scope": "#/properties/is_liquid_double_sealed"},
+            {"type": "Control", "scope": "#/properties/directions"},
+            {"type": "Control", "scope": "#/properties/indications"},
+            {"type": "Control", "scope": "#/properties/ec_medical_device_sales_channel"},
+            {"type": "Control", "scope": "#/properties/compliance_media"}
+            ]
+        }      
+    ]
+  }  
