@@ -1,7 +1,7 @@
 <template>
   <div>
     <img class="block mx-auto" alt="Vue logo" src="./assets/logo.png" />
-    <h1 class="font-bold">JSON Forms Vue 3</h1>
+    <h1 class="font-bold mb-5">JSON Forms Vue 3</h1>
     <div v-if="schema" class="myform">
       <json-forms
         :data="data"
@@ -23,48 +23,47 @@ import {
   vanillaRenderers,
 } from "@jsonforms/vue-vanilla";
 import { data } from "./components/data";
+import schemaJson from "./components/uiSchema.json";
 // mergeStyles combines all classes from both styles definitions into one
 const myStyles = mergeStyles(defaultStyles, {
   control: {
     label:
-      "block w-full pb-1 text-md font-bold text-left font-medium text-gray-500 transition-all duration-200 ease-in-out",
-    input:
-      "h-10 w-full rounded-md bg-gray-50 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out",
-    select: "appearance-none w-full py-1 px-2 bg-gray-50 rounded-md text-black",
-    root: "mt-5 text-[#121826]",
+      "block w-full pb-1 text-md font-bold text-left font-bold text-[#121826]",
+    input: "border border-gray-300 shadow px-3 py-2 w-full rounded-md",
+    select:
+      "appearance-none border border-gray-300 shadow px-3 py-2 w-full rounded-md text-[#121826]",
+    root: "text-[#121826]",
     error: "text-red-500 text-start mt-1",
-    description: "text-start mt-1",
+    description: "text-start text-sm my-1 !min-h-fit",
   },
   arrayList: {
     legend:
       "w-full bg-white flex-row-reverse bg-white flex justify-between items-center  border-0",
-    label: "text-lg font-semibold text-[#121826]",
-    addButton: "text-3xl font-medium",
-    itemWrapper: "p-5 border-2 rounded-lg mb-3 text-[#121826]",
+    label: "text-[16px] font-semibold text-[#121826]",
+    addButton: "text-[28px] font-medium",
+    itemWrapper: "p-3 border-2 rounded-lg mb-3 text-[#121826]",
     itemLabel:
-      "flex-1 w-fit h-fit text-start font-medium text-[18px] !bg-transparent",
-    itemToolbar: "flex",
+      "flex-1 w-fit h-fit text-start font-medium text-[16px] !bg-transparent line-clamp-1",
+    itemToolbar: "flex ",
     itemMoveUp:
-      "ml-auto py-1 px-2 disabled:bg-[#aaa] text-[14px] bg-black text-white rounded-lg size-[30px]",
+      "ml-auto py-1 mr-1 px-2 text-black disabled:hidden text-[14px] bg-gray-200 hover:bg-gray-300 duration-300 rounded-lg size-[30px]",
     itemMoveDown:
-      "py-1 px-2 disabled:bg-[#aaa] text-[14px] bg-black text-white rounded-lg mx-2 size-[30px]",
+      "py-1 px-2 mr-1 text-black disabled:hidden text-[14px] bg-gray-200 hover:bg-gray-300 duration-300 rounded-lg size-[30px]",
     itemDelete:
-      "py-1 px-2 disabled:bg-[#aaa] text-[14px] bg-black text-white rounded-lg size-[30px]",
+      "py-1 px-2 disabled:hidden text-[14px] rounded-lg bg-red-600 text-red-100 hover:bg-red-700 duration-300 size-[30px]",
+    itemExpanded: "[&>.array-list-item-label]:line-clamp-6",
   },
   group: {
-    label: "font-bold text-2xl mb-3",
+    label: "font-bold text-[20px] underline mb-3",
     root: "",
   },
   horizontalLayout: {
-    root: "gap-4",
-    item: "",
+    root: "gap-5",
+    item: "px-5 py-3 mb-5 shadow-md border-2 rounded-xl",
   },
 });
 
-const renderers = [
-  ...vanillaRenderers,
-  // here you can add custom renderers
-];
+const renderers = [...vanillaRenderers];
 
 export default defineComponent({
   name: "App",
@@ -86,10 +85,12 @@ export default defineComponent({
         "https://toucanapp-imgs-public.s3.eu-west-2.amazonaws.com/schema.json"
       );
       const schemaData = await response.json();
+
+      // const c = JSON.parse(localStorage.getItem("schemaData") as string);
       this.schema = schemaData;
 
       if (this.schema) {
-        this.uischema = require("./components/uiSchema.json");
+        this.uischema = schemaJson;
         // this.uischema = {
         //   type: "VerticalLayout",
         //   elements: Object.keys(this.schema.properties).map((property) => ({
@@ -111,6 +112,17 @@ export default defineComponent({
         controlElement.id.includes("marketplace_id")
       ) {
         (controlElement as HTMLElement).style.display = "none";
+      }
+    });
+    const imgs = document.querySelectorAll(".array-list-item-label");
+    imgs.forEach((controlElement) => {
+      if (
+        controlElement.innerHTML &&
+        controlElement.innerHTML.includes("images")
+      ) {
+        (
+          controlElement as HTMLElement
+        ).innerHTML = `<img src=${controlElement.innerHTML} width='100px'/>`;
       }
     });
   },
@@ -142,8 +154,5 @@ export default defineComponent({
   max-width: 1200px;
   padding: 0 20px;
   margin: 0 auto;
-}
-.horizontal-layout-item {
-  padding: 10px 10px;
 }
 </style>
