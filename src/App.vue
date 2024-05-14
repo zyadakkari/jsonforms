@@ -7,24 +7,25 @@
         :data="data"
         :renderers="renderers"
         :schema="schema"
-        :uischema="uischema"
+        :uischema="uiSchema"
         @change="onChange"
       />
     </div>
+    <div v-else class="font-bold">Loading...</div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref, onMounted, provide, onUpdated } from "vue";
 import { JsonForms } from "@jsonforms/vue";
 import {
   defaultStyles,
   mergeStyles,
   vanillaRenderers,
 } from "@jsonforms/vue-vanilla";
-import { data } from "./components/data";
+import { data as initialData } from "./components/data";
 import schemaJson from "./components/uiSchema.json";
-// mergeStyles combines all classes from both styles definitions into one
+
 const myStyles = mergeStyles(defaultStyles, {
   control: {
     label:
@@ -63,80 +64,51 @@ const myStyles = mergeStyles(defaultStyles, {
   },
 });
 
-const renderers = [...vanillaRenderers];
+const renderers = ref(Object.freeze([...vanillaRenderers])); // Freezing the renderers for better performance gains
+const schema = ref(null);
+const uiSchema = ref(schemaJson);
+const data = ref(initialData);
 
-export default defineComponent({
-  name: "App",
-  components: {
-    JsonForms,
-  },
-  data() {
-    return {
-      // freeze renderers for performance gains
-      renderers: Object.freeze(renderers),
-      schema: null as any,
-      uischema: {} as any,
-      data: data,
-    };
-  },
-  async mounted() {
-    try {
-      const response = await fetch(
-        "https://toucanapp-imgs-public.s3.eu-west-2.amazonaws.com/schema.json"
-      );
-      const schemaData = await response.json();
+onMounted(async () => {
+  try {
+    const response = await fetch(
+      "https://toucanapp-imgs-public.s3.eu-west-2.amazonaws.com/schema.json"
+    );
+    const schemaData = await response.json();
 
-      // const c = JSON.parse(localStorage.getItem("schemaData") as string);
-      this.schema = schemaData;
-
-      if (this.schema) {
-        this.uischema = schemaJson;
-        // this.uischema = {
-        //   type: "VerticalLayout",
-        //   elements: Object.keys(this.schema.properties).map((property) => ({
-        //     type: "Control",
-        //     scope: `#/properties/${property}`,
-        //   })),
-        // };
-      }
-    } catch (error) {
-      console.error("Failed to load data:", error);
-    }
-  },
-  updated() {
-    const controlElements = document.querySelectorAll(".control");
-
-    controlElements.forEach((controlElement) => {
-      if (
-        (controlElement.id && controlElement.id.includes("language_tag")) ||
-        controlElement.id.includes("marketplace_id")
-      ) {
-        (controlElement as HTMLElement).style.display = "none";
-      }
-    });
-    const imgs = document.querySelectorAll(".array-list-item-label");
-    imgs.forEach((controlElement) => {
-      if (
-        controlElement.innerHTML &&
-        controlElement.innerHTML.includes("images")
-      ) {
-        (
-          controlElement as HTMLElement
-        ).innerHTML = `<img src=${controlElement.innerHTML} width='100px'/>`;
-      }
-    });
-  },
-  methods: {
-    onChange(event: any) {
-      this.data = event.data;
-    },
-  },
-  provide() {
-    return {
-      styles: myStyles,
-    };
-  },
+    schema.value = schemaData;
+    console.log(schema.value);
+  } catch (error) {
+    console.error("Failed to load data:", error);
+  }
 });
+
+onUpdated(() => {
+  const controlElements = document.querySelectorAll(".control");
+  const imgElements = document.querySelectorAll(".array-list-item-label");
+
+  controlElements.forEach((controlElement) => {
+    if (
+      (controlElement.id && controlElement.id.includes("language_tag")) ||
+      controlElement.id.includes("marketplace_id")
+    ) {
+      (controlElement as HTMLElement).style.display = "none";
+    }
+  });
+  imgElements.forEach((imgElement) => {
+    if (imgElement.innerHTML && imgElement.innerHTML.includes("/images")) {
+      (
+        imgElement as HTMLElement
+      ).innerHTML = `<img src=${imgElement.innerHTML} alt='img' width='100px'/>`;
+    }
+  });
+});
+
+function onChange(event: any) {
+  data.value = event.data;
+}
+
+provide("styles", myStyles);
 </script>
 
 <style>
