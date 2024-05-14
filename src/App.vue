@@ -45,7 +45,7 @@ const myStyles = mergeStyles(defaultStyles, {
     itemWrapper: "p-3 border-2 rounded-lg mb-3 text-[#121826]",
     itemLabel:
       "flex-1 w-fit h-fit text-start font-medium text-[16px] !bg-transparent line-clamp-1",
-    itemToolbar: "flex ",
+    itemToolbar: "flex",
     itemMoveUp:
       "ml-auto py-1 mr-1 px-2 text-black disabled:hidden text-[14px] bg-gray-200 hover:bg-gray-300 duration-300 rounded-lg size-[30px]",
     itemMoveDown:
@@ -96,10 +96,14 @@ onUpdated(() => {
     }
   });
   imgElements.forEach((imgElement) => {
-    if (imgElement.innerHTML && imgElement.innerHTML.includes("/images")) {
+    if (
+      imgElement.innerHTML &&
+      imgElement.innerHTML.includes("/images") &&
+      !imgElement.innerHTML.includes("<img")
+    ) {
       (
         imgElement as HTMLElement
-      ).innerHTML = `<img src=${imgElement.innerHTML} alt='img' width='100px'/>`;
+      ).innerHTML = `<img class='w-[100px] h-[150px] object-cover' alt='img'  src=${imgElement.innerHTML} >`;
     }
   });
 });
